@@ -16,7 +16,7 @@ const Hero = ({ title, subtitle, buttonText, buttonAction }) => {
 
     <>
 
-        <section className={`relative flex items-center justify-center w-full h-[90vh]`}>
+        <section className={`relative flex items-center justify-center w-full py-56 md:py-40`}>
         <Image
             src="/image-08.webp"
             alt="Palm Armani"
@@ -32,10 +32,10 @@ const Hero = ({ title, subtitle, buttonText, buttonAction }) => {
         <div className="flex flex-col justify-between items-center lg:flex-row w-full px-4 py-5 mx-auto sm:max-w-xl md:max-w-full lg:max-w-screen-xl md:px-24 lg:px-8 lg:py-20 relative z-20 h-full">
             <div className="mb-12 lg:pr-5 lg:mb-0 w-full flex justify-center items-center text-white">
             <div className="w-full mb-6">
-                <h2 className="mb-6 font-sans text-3xl font-bold tracking-tight text-white lg:text-5xl sm:leading-none text-center">
+                <h2 className="mb-6 font-sans text-4xl font-bold tracking-tight text-white lg:text-5xl sm:leading-none text-center">
                 Armani Beach Jumeirah by Arada
                 </h2>
-                <p className="tex-xl md:text-2xl text-center mb-4 uppercase">Apartments, Penthouses,<br className="hidden md:block" /> Townhouses, & Villas</p>
+                <p className="text-xl md:text-2xl text-center mb-4 uppercase">Apartments, Penthouses,<br /> Townhouses, & Villas</p>
                 <div className="w-full text-center">
                 <span className="inline text-lg md:text-xl">Starting From </span>
                 <br className="block lg:hidden" />
