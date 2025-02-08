@@ -1,21 +1,49 @@
+/* @import url("https://use.typekit.net/anv6qns.css") screen; */
+
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
 
-:root {
-  --background: #ffffff;
-  --foreground: #171717;
+.museo_sans {
+    font-family: "museo-sans", sans-serif;
 }
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
+.minerva_modern {
+    font-family: "minerva-modern", sans-serif;
+}
+
+.btn-container {
+    display: flex;
+    justify-content: center;
+    --color-text: #000000;
+    --color-background: #ffffff;
+    --color-outline: #fdfdfd80;
+    --color-shadow: #00000080;
   }
-}
-
-body {
-  color: var(--foreground);
-  background: var(--background);
-  font-family: Arial, Helvetica, sans-serif;
-}
+  
+  .btn-content {
+    display: flex;
+    align-items: center;
+    text-decoration: none;
+    font-family: "Poppins", sans-serif;
+    color: var(--color-text);
+    background: var(--color-background);
+    border-radius: 100px;
+    transition: 0.5s;
+    -webkit-animation: btn-content 1s infinite;
+    animation: btn-content 1s infinite;
+    outline: 0.2em solid transparent;
+    outline-offset: 0.2em;
+  }
+  
+  .btn-content:hover {
+    transform: scale(1.05);
+    box-shadow: 0 0 15px var(--color-shadow);
+  }
+  
+  @keyframes btn-content {
+    0% {
+      outline: 0.3em solid var(--color-background);
+      outline-offset: 0;
+    }
+  }
