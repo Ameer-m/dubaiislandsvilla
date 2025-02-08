@@ -34,7 +34,7 @@ const Hero = ({ title, subtitle, buttonText, buttonAction }) => {
             {/* Content Section */}
             <div className="mb-12 lg:pr-5 lg:mb-0 w-full flex justify-center items-center text-white">
                 <div className="w-full text-center">
-                    <h2 className="mb-6 font-sans text-4xl font-bold tracking-tight text-white lg:text-5xl sm:leading-none">
+                    <h2 className="mb-6 text-3xl font-bold tracking-tight text-white lg:text-5xl sm:leading-none">
                         Armani Beach Jumeirah by Arada
                     </h2>
                     <p className="text-xl md:text-2xl mb-4 uppercase">Apartments, Penthouses, Townhouses, & Villas</p>
