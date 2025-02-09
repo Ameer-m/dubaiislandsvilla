@@ -1,6 +1,6 @@
 "use client";
 
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import React from "react";
 import Modal from "./Modal";
 import Form from "./Form";
@@ -12,25 +12,32 @@ const Hero = ({ title, subtitle, buttonText, buttonAction }) => {
     const openModal = () => setIsModalOpen(true);
     const closeModal = () => setIsModalOpen(false);
 
+    const [imageSrc, setImageSrc] = useState("/image-08.webp"); // Default desktop image
+
+  useEffect(() => {
+    const handleResize = () => {
+      setImageSrc(window.innerWidth < 768 ? "/mob-hero.webp" : "/image-08.webp");
+    };
+
+    handleResize(); // Run on initial render
+    window.addEventListener("resize", handleResize);
+
+    return () => window.removeEventListener("resize", handleResize);
+  }, []);
+
   return (
 
     <>
 
         <section className={`relative py-40`}>
         <Image
-            src="/image-08.webp"
-            alt="Palm Armani"
-            fill // Replaces `layout="fill"`
-            quality={10}
-            className="absolute z-0 object-cover object-center hidden md:block"
-        />
-        <Image
-            src="/mob-hero.webp"
-            alt="Palm Armani"
-            fill // Replaces `layout="fill"`
-            quality={10}
-            className="absolute z-0 object-cover object-center block md:hidden"
-        />
+        src={imageSrc}
+        alt="Palm Armani"
+        fill
+        quality={10}
+        priority
+        className="absolute inset-0 object-cover object-center"
+      />
 
         {/* Overlay */}
         <div className="absolute inset-0 bg-black/50"></div>
