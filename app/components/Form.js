@@ -1,6 +1,6 @@
 "use client";
 
-import { useState, useEffect } from "react";
+import { useState } from "react";
 import PhoneInput from "react-phone-number-input";
 import "react-phone-number-input/style.css";
 
@@ -21,32 +21,52 @@ const Form = ({ bgColor, inStyles, btnText }) => {
 
   const [loading, setLoading] = useState(false);
   const [successMessage, setSuccessMessage] = useState("");
-  const [pageUrl, setPageUrl] = useState("");
 
-  useEffect(() => {
-    setPageUrl(window.location.href); // Capture current page URL
-  }, []);
+  const validateEmail = (email) => {
+    return /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email);
+  };
 
-  const validateEmail = (email) => /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email);
-
-  const validatePhone = (phone) => phone && phone.length >= 8 && phone.length <= 15;
+  const validatePhone = (phone) => {
+    return phone && phone.length >= 8 && phone.length <= 15; // Ensures valid phone length
+  };
 
   const handleChange = (e) => {
     const { name, value } = e.target;
+  
     setFormData({ ...formData, [name]: value });
-
+  
+    // Clear error when the user starts typing
     if (errors[name]) {
       setErrors({ ...errors, [name]: "" });
     }
   };
-
+  
+  // Handle phone input separately
   const handlePhoneChange = (value) => {
     setFormData({ ...formData, phone: value });
-
+  
+    // Only validate on form submission, but clear errors when typing
     if (errors.phone) {
       setErrors({ ...errors, phone: "" });
     }
   };
+  
+  // Validate phone on form submission
+  const validateForm = () => {
+    let newErrors = {};
+  
+    if (!formData.phone || !validatePhone(formData.phone)) {
+      newErrors.phone = "Please enter a valid phone number.";
+    }
+  
+    if (Object.keys(newErrors).length > 0) {
+      setErrors(newErrors);
+      return false; // Form is invalid
+    }
+  
+    return true; // Form is valid
+  };
+  
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -76,10 +96,8 @@ const Form = ({ bgColor, inStyles, btnText }) => {
         },
         body: JSON.stringify({
           fname: formData.fname,
-          lname: formData.lname,
           email: formData.email,
-          phone: formData.phone,
-          pageUrl: pageUrl, // Sending current page URL
+          full_phone_number: formData.phone,
         }),
       });
 
@@ -176,10 +194,10 @@ const Form = ({ bgColor, inStyles, btnText }) => {
         </button>
 
         {/* Success Message */}
-        {successMessage && <p className=" text-center mt-3">{successMessage}</p>}
+        {successMessage && <p className="text-green-600 text-center mt-3">{successMessage}</p>}
 
         {/* Disclaimer */}
-        <p className="w-full text-gray-400 text-xs font-light poppins text-center mt-3">
+        <p className="w-full text-gray-500 text-xs font-light poppins text-center mt-3">
           By clicking Submit, you agree to
           <br />
           our{" "}
