@@ -16,13 +16,20 @@ const Hero = ({ title, subtitle, buttonText, buttonAction }) => {
 
     <>
 
-        <section className={`relative flex items-center justify-center w-full py-56 md:py-40`}>
+        <section className={`relative py-40`}>
         <Image
             src="/image-08.webp"
             alt="Palm Armani"
             fill // Replaces `layout="fill"`
             quality={10}
-            className="absolute z-0 object-cover object-center "
+            className="absolute z-0 object-cover object-center hidden md:block"
+        />
+        <Image
+            src="/mob-hero.webp"
+            alt="Palm Armani"
+            fill // Replaces `layout="fill"`
+            quality={10}
+            className="absolute z-0 object-cover object-center block md:hidden"
         />
 
         {/* Overlay */}
