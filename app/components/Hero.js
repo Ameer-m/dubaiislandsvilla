@@ -51,15 +51,10 @@ const Hero = ({ title, subtitle, buttonText, buttonAction }) => {
                         <div className="btn-container mt-6">
                         <button
                             type="button"
-                            className="trigger select-none btn-content flex justify-between items-center relative space-x-4 px-3 py-2 pr-12 hover:cursor-pointer"
+                            className="trigger select-none btn-content flex justify-between items-center relative space-x-4 px-6 py-5 hover:cursor-pointer"
                             onClick={openModal}
                         >
-                            <img
-                            src="/image-01.webp"
-                            alt="Profile"
-                            className="left-3 rounded-full object-cover aspect-square h-14"
-                            />
-                            <div className="uppercase py-px text-lg md:text-2xl font-black text-[#071D35] minerva_modern">
+                            <div className="uppercase py-px text-lg md:text-2xl text-center font-black text-[#071D35] minerva_modern">
                             Get a Call Back
                             </div>
                         </button>
