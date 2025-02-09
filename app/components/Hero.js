@@ -21,7 +21,7 @@ const Hero = ({ title, subtitle, buttonText, buttonAction }) => {
             src="/image-08.webp"
             alt="Palm Armani"
             fill // Replaces `layout="fill"`
-            quality={20}
+            quality={10}
             className="absolute z-0 object-cover object-center "
         />
 
@@ -29,16 +29,16 @@ const Hero = ({ title, subtitle, buttonText, buttonAction }) => {
         <div className="absolute inset-0 bg-black/50"></div>
 
         <div className="flex flex-col justify-between items-center lg:flex-row w-full px-4 py-5 mx-auto sm:max-w-xl md:max-w-full lg:max-w-screen-xl md:px-24 lg:px-8 lg:py-20 relative z-20 h-full">
-            <div className="mb-12 lg:pr-5 lg:mb-0 w-full flex justify-center items-center text-white">
+            <div className="mb-12 lg:pr-5 lg:mb-0 w-full text-white ">
             <div className="w-full mb-6 text-center">
-                <h2 className="mb-6 text-3xl font-bold lg:text-5xl">
+                <h2 className="mb-6 text-2xl font-bold lg:text-5xl">
                 Armani Beach Jumeirah by Arada
                 </h2>
-                <p className="text-xl md:text-2xl mb-4 uppercase">Apartments, Penthouses,<br /> Townhouses, & Villas</p>
+                <p className="text-md md:text-2xl mb-4 uppercase">Apartments, Penthouses,<br /> Townhouses, & Villas</p>
                 <div className="w-full">
-                <span className="inline text-lg md:text-xl">Starting From </span>
-                <br className="block lg:hidden" />
-                <p className="text-3xl lg:text-4xl font-bold"> AED 21,500,000</p>
+                    <span className="inline text-lg md:text-xl">Starting From </span>
+                    <br className="block lg:hidden" />
+                    <p className="text-3xl lg:text-4xl font-bold"> AED 21,500,000</p>
                 </div>
                 <div className="flex justify-center items-center flex-col md:flex-row md:space-x-6 w-full">
                     <div className="w-full flex flex-col items-center justify-center">
