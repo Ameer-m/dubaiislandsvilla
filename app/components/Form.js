@@ -176,10 +176,10 @@ const Form = ({ bgColor, inStyles, btnText }) => {
         </button>
 
         {/* Success Message */}
-        {successMessage && <p className="text-green-600 text-center mt-3">{successMessage}</p>}
+        {successMessage && <p className=" text-center mt-3">{successMessage}</p>}
 
         {/* Disclaimer */}
-        <p className="w-full text-gray-500 text-xs font-light poppins text-center mt-3">
+        <p className="w-full text-gray-400 text-xs font-light poppins text-center mt-3">
           By clicking Submit, you agree to
           <br />
           our{" "}

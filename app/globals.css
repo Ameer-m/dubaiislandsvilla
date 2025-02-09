@@ -12,6 +12,11 @@
     font-family: "minerva-modern", sans-serif;
 }
 
+.PhoneInputInput {
+  background: transparent;
+  outline: none;
+}
+
 .btn-container {
     display: flex;
     justify-content: center;

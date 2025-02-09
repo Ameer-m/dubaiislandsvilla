@@ -1,10 +1,12 @@
 "use client";
 
-import { useState, useEffect } from "react";
+import { useState } from "react";
 import React from "react";
-import Modal from "./Modal";
-import Form from "./Form";
 import Image from "next/image";
+import dynamic from 'next/dynamic';
+
+// Dynamically import MyForm to prevent hydration issues
+const MyForm = dynamic(() => import('../components/Form'), { ssr: false });
 
 const Hero = ({ title, subtitle, buttonText, buttonAction }) => {
     const [isModalOpen, setIsModalOpen] = useState(false);
@@ -12,98 +14,55 @@ const Hero = ({ title, subtitle, buttonText, buttonAction }) => {
     const openModal = () => setIsModalOpen(true);
     const closeModal = () => setIsModalOpen(false);
 
-    const [imageSrc, setImageSrc] = useState("/image-08.webp"); // Default desktop image
-
-  useEffect(() => {
-    const handleResize = () => {
-      setImageSrc(window.innerWidth < 768 ? "/mob-hero.webp" : "/image-08.webp");
-    };
-
-    handleResize(); // Run on initial render
-    window.addEventListener("resize", handleResize);
-
-    return () => window.removeEventListener("resize", handleResize);
-  }, []);
-
   return (
 
     <>
 
-        <section className={`relative py-40`}>
-        <Image
-        src={imageSrc}
+    <section className={`heroImg flex items-center justify-center w-full relative`}>
+      <Image
+        src="/image-07.webp"
         alt="Palm Armani"
-        fill
-        quality={10}
+        fill // Replaces `layout="fill"`
+        quality={20}
         priority
-        className="absolute inset-0 object-cover object-center"
+        className="absolute z-0"
+        style={{ objectFit: 'cover', objectPosition: 'center' }} // Use `style` for these properties
       />
 
-        {/* Overlay */}
-        <div className="absolute inset-0 bg-black/50"></div>
 
-        <div className="flex flex-col justify-between items-center lg:flex-row w-full px-4 py-5 mx-auto sm:max-w-xl md:max-w-full lg:max-w-screen-xl md:px-24 lg:px-8 lg:py-20 relative z-20 h-full">
-            <div className="mb-12 lg:pr-5 lg:mb-0 w-full text-white ">
-            <div className="w-full mb-6 text-center">
-                <h2 className="mb-6 text-2xl font-bold lg:text-5xl">
-                Armani Beach Jumeirah by Arada
-                </h2>
-                <p className="text-md md:text-2xl mb-4 uppercase">Apartments, Penthouses,<br /> Townhouses, & Villas</p>
-                <div className="w-full">
-                    <span className="inline text-lg md:text-xl">Starting From </span>
-                    <br className="block lg:hidden" />
-                    <p className="text-3xl lg:text-4xl font-bold"> AED 21,500,000</p>
-                </div>
-                <div className="flex justify-center items-center flex-col md:flex-row md:space-x-6 w-full">
-                    <div className="w-full flex flex-col items-center justify-center">
-                        <div className="btn-container mt-6">
-                        <button
-                            type="button"
-                            className="trigger select-none btn-content flex justify-between items-center relative space-x-4 px-3 py-2 pr-12 hover:cursor-pointer"
-                            onClick={openModal}
-                        >
-                            <img
-                            src="/image-01.webp"
-                            alt="Profile"
-                            className="left-3 rounded-full object-cover aspect-square h-14"
-                            />
-                            <div className="uppercase py-px text-lg md:text-2xl font-black text-[#071D35] minerva_modern">
-                            Get a Call Back
-                            </div>
-                        </button>
-                        </div>
-                    </div>
-                </div>
+      <div className="overlay absolute inset-0 z-10 bg-black/40"></div>
+      <div className="flex flex-col justify-between items-center lg:flex-row w-full px-4 py-5 mx-auto sm:max-w-xl md:max-w-full lg:max-w-screen-xl md:px-24 lg:px-8 lg:py-20 relative z-20">
+        <div className="mb-12 lg:max-w-lg lg:pr-5 lg:mb-0 w-full">
+          <div className="max-w-xl mb-6 text-white">
+            <h2 className="max-w-lg mb-6 font-sans text-3xl font-bold tracking-tight lg:text-5xl sm:leading-none">
+              Armani Beach{' '}
+              <br className="hidden md:block" />
+              Residences at Palm <span className="inline-block text-deep-purple-accent-400">
+                Jumeirah by Arada
+              </span>
+            </h2>
+            <div>
+              <span className="inline text-lg md:text-xl">Starting From</span>
+              <p className="text-3xl lg:text-4xl font-bold">AED 21,500,000</p>
             </div>
-            </div>
-            {/* <div className="bg-black/40 rounded-3xl p-8 flex flex-col md:ml-auto mt-10 md:mt-0 border-4 border-gray-300">
-            <div className="mb-5 border-b pb-2 border-white">
-                <h2 className="text-gray-50 text-lg md:text-2xl font-medium title-font capitalize">
-                Please fill in the form
-                </h2>
-                <p className="text-gray-50">
-                Begin your journey to premium living by sharing your details with us.
-                </p>
-            </div>
-            <React.Suspense fallback={<div>Loading...</div>}>
-                <Form />
-            </React.Suspense>
-            </div> */}
+          </div>
         </div>
-    </section>
-    {/* Modal */}
-    <Modal isOpen={isModalOpen} onClose={closeModal} title="Please Fill in the Form Below" desc="Our agents will provide you with all the latest information about the project. as well as assisting in choosing the best unit corresponding to your needs.">
-            <h2 className="text-2xl font-bold mb-4">This is a Modal</h2>
-            <p className="text-gray-700 mb-6">
-            Here you can display any content you'd like!
+        <div className="bg-black/40 rounded-3xl p-8 flex flex-col md:ml-auto mt-10 md:mt-0 border-4 border-gray-300">
+          <div className="mb-5 border-b pb-2 border-white">
+            <h2 className="text-gray-50 text-lg md:text-2xl font-medium title-font capitalize">
+              Please fill in the form
+            </h2>
+            <p className="text-gray-50">
+              Begin your journey to premium living by sharing your details with us.
             </p>
-            <button
-            className="px-6 py-3 bg-red-500 text-white rounded-lg font-semibold hover:bg-red-600 transition-all cursor-pointer"
-            onClick={closeModal}
-            >
-            Close Modal
-            </button>
-        </Modal>
+          </div>
+          <React.Suspense fallback={<div>Loading...</div>}>
+            {/* Lazy load the form component */}
+            <MyForm inStyles="border-b-2 border-white text-white placeholder:text-white focus:border-white"/>
+          </React.Suspense>
+        </div>
+      </div>
+    </section>
     </>
   );
 };
