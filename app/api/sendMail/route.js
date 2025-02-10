@@ -8,11 +8,11 @@ export async function POST(req) {
     console.log("Raw request body:", rawBody);
     const body = JSON.parse(rawBody);
 
-    let { fname, lname, email, phone, pageUrl } = body;
+    let { fname, lname, email, full_phone_number, pageUrl } = body;
 
-    console.log("Received data:", { fname, lname, email, phone, pageUrl });
+    console.log("Received data:", { fname, lname, email, full_phone_number, pageUrl });
 
-    if (!fname || !email || !phone) {
+    if (!fname || !email || !full_phone_number) {
       return new Response(JSON.stringify({ error: "All fields are required" }), {
         status: 400,
         headers: { "Content-Type": "application/json" },
@@ -29,8 +29,9 @@ export async function POST(req) {
     }
 
     // Extracted UTM parameters
-    const utm_source = queryParams.utm_source || null;
-    const campaign_id = queryParams.campaign_id || null;
+    const utm_source = queryParams.utm_source || "";
+    const campaign_id = queryParams.campaign_id || "";
+    const property_id = queryParams.property_id || "";
 
     console.log("Extracted Query Params:", queryParams);
 
@@ -86,9 +87,16 @@ export async function POST(req) {
         break;
       default:
         mediatype = 129475;
-        medianame = 165233;
+        medianame = 70128;
         break;
     }
+
+    const activityRemarks = `
+          Name: ${fname} ${lname}
+          Email: ${email}
+          Phone: ${full_phone_number}
+          Page URL: ${pageUrl}`
+          .trim();
 
     // CRM API URL
     const apiUrl = `https://api.portal.dubai-crm.com/leads/query/create?TitleID=129929&IsForAutoRotation=false&FirstName=${encodeURIComponent(
@@ -96,12 +104,12 @@ export async function POST(req) {
     )}&FamilyName=${encodeURIComponent(
       lname
     )}&MobileCountryCode=0&MobileAreaCode=0&MobilePhone=${encodeURIComponent(
-      phone
+      full_phone_number
     )}&TelephoneCountryCode=na&TelephoneAreaCode=na&Telephone=na&Email=${encodeURIComponent(
       email
     )}&NationalityID=65946&Remarks=${encodeURIComponent(
       `Submitted from: ${pageUrl}`
-    )}&RequirementType=91212&ContactType=3&CountryID=65946&StateID=91578&CityID=91578&DistrictID=&CommunityID=&SubCommunityID&PropertyID=&UnitType=19&PropertyCampaignId=${campaign_id}&LanguageID=115915&MethodOfContact=115747&MediaType=${mediatype}&MediaName=${medianame}&Bedroom=&Bathroom=&Budget=&Budget2=&RequirementCountryID=65946&ReferredToID=4421&ReferredByID=4421&IsBulkUpload=false&ActivityAssignedTo=4421&ActivityDate=&ActivityTypeId=167234&ActivitySubject=Email%20Inquiry%20Copy&ActivityRemarks=&Phone=&APIKey=d301dba69732065cd006f90c6056b279fe05d9671beb6d29f2d9deb0206888c38239a3257ccdf4d0`;
+    )}&RequirementType=91212&ContactType=3&CountryID=65946&StateID=91578&CityID=91578&DistrictID=&CommunityID=&SubCommunityID&PropertyID=${property_id}&UnitType=19&PropertyCampaignId=${campaign_id}&LanguageID=115915&MethodOfContact=115747&MediaType=${mediatype}&MediaName=${medianame}&Bedroom=&Bathroom=&Budget=&Budget2=&RequirementCountryID=65946&ReferredToID=4421&ReferredByID=4421&IsBulkUpload=false&ActivityAssignedTo=4421&ActivityDate=&ActivityTypeId=167234&ActivitySubject=Email%20Inquiry%20Copy&ActivityRemarks=${activityRemarks}&Phone=&APIKey=d301dba69732065cd006f90c6056b279fe05d9671beb6d29f2d9deb0206888c38239a3257ccdf4d0`;
 
     // Send request to CRM
     const response = await axios.get(apiUrl);
@@ -129,7 +137,7 @@ export async function POST(req) {
     const mailOptions = {
       from: "PSI Real Estate <psirealestate2@gmail.com>",
       to: "callcenter@psidubai.com",
-      cc: ["ameer.k@psidubai.com", "ameerahmedkhan.m@gmail.com"],
+      cc: ["ameer.k@psidubai.com", "akshayb@psidubai.com"],
       subject: "New Inquiry - PSI Real Estate",
       html: `
       <!DOCTYPE html>
@@ -161,7 +169,7 @@ export async function POST(req) {
                       <table class="info-table">
                         <tr><th>Name</th><td>${fname} ${lname}</td></tr>
                         <tr><th>Email</th><td>${email}</td></tr>
-                        <tr><th>Phone</th><td>${phone}</td></tr>
+                        <tr><th>Phone</th><td>${full_phone_number}</td></tr>
                         <tr><th>Page URL</th><td><a href="${pageUrl}" target="_blank">${pageUrl}</a></td></tr>
                         <tr><th>UTM Source</th><td>${utm_source || "Not Provided"}</td></tr>
                       </table>

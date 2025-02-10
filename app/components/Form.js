@@ -1,6 +1,6 @@
 "use client";
 
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import PhoneInput from "react-phone-number-input";
 import "react-phone-number-input/style.css";
 
@@ -21,6 +21,12 @@ const Form = ({ bgColor, inStyles, btnText }) => {
 
   const [loading, setLoading] = useState(false);
   const [successMessage, setSuccessMessage] = useState("");
+  const [pageUrl, setPageUrl] = useState("");
+
+  useEffect(() => {
+    setPageUrl(window.location.href);
+    console.log(pageUrl)
+  }, []);
 
   const validateEmail = (email) => {
     return /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email);
@@ -96,8 +102,10 @@ const Form = ({ bgColor, inStyles, btnText }) => {
         },
         body: JSON.stringify({
           fname: formData.fname,
+          lname: formData.lname,
           email: formData.email,
           full_phone_number: formData.phone,
+          pageUrl: pageUrl,
         }),
       });
 
