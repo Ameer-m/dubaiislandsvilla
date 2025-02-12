@@ -18,7 +18,7 @@ const GalleryGrid = ({ images }) => {
 
   return (
     <>
-      <div className="md:px-5 md:py-10 px-4 py-5 mx-auto sm:max-w-xl md:max-w-full lg:max-w-screen-xl lg:px-8 lg:py-8">
+      <div className="md:px-5 md:py-10 px-4 py-5 mx-auto sm:max-w-xl md:max-w-full lg:max-w-screen-xl lg:px-8 lg:py-6">
         {/* Heading */}
         <div className="flex justify-center items-center flex-col md:flex-row py-4 md:py-10">
           <h1 className="text-3xl md:text-5xl text-black font-black text-center py-4 minerva_modern">
@@ -66,7 +66,7 @@ const GalleryGrid = ({ images }) => {
                 </button>
               </div>
 
-              <div className="md:p-2 p-1 mb-2 md:mb-0 w-full lg:w-1/2 h-full">
+              <div className="md:p-2 p-1 pb-2 pt-3 mb-2 md:mb-0 w-full lg:w-1/2 h-full">
                 <button
                   onClick={() => setIndex(0)}
                   className="p-2 h-full w-full text-center bg-black text-white rounded-lg lg:rounded-3xl"

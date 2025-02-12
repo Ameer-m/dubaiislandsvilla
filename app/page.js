@@ -6,6 +6,8 @@ import Footerinfo from "./components/Footerinfo";
 import Form from "./components/Form";
 import GalleryGrid from "./components/Gallery";
 import Navbar from "./components/Navbar";
+import Resicon from "./components/Resicon";
+import Shopicon from "./components/Shopicon";
 
 const images = [
   { src: "/image-01.webp", alt: "Dubai Islands" },
@@ -58,7 +60,7 @@ export default function Home() {
       <Brochure />
 
       <section id="amenities">
-        <div className="px-4 pt-28 pb-14 mx-auto sm:max-w-xl md:max-w-full lg:max-w-screen-xl md:px-24 lg:px-8 lg:py-24">
+        <div className="px-4 pt-28 pb-14 mx-auto sm:max-w-xl md:max-w-full lg:max-w-screen-xl md:px-24 lg:px-8 lg:py-6">
         <div className=" ">
       {/* Responsive Grid Layout */}
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
@@ -94,10 +96,16 @@ export default function Home() {
 
           <div className="grid grid-cols-2 gap-4">
             <div className="p-6 bg-white rounded-2xl shadow-md flex flex-col items-start h-full">
+              <div>
+                <Resicon />
+              </div>
               <span className="text-xl font-bold">Restaurants & Cafés</span>
               <p className="text-xs mt-2 text-gray-600">Indulge in diverse culinary delights, from fine dining to cozy cafés.</p>
             </div>
             <div className="p-6 bg-white rounded-2xl shadow-md flex flex-col items-start">
+              <div>
+                <Shopicon />
+              </div>
               <span className="text-xl font-bold">Shopping Centers</span>
               <p className="text-xs mt-2 text-gray-600">Explore luxury boutiques, flagship stores, and retail havens.</p>
             </div>
@@ -156,7 +164,7 @@ export default function Home() {
     </section>
 
     <section>
-        <div className="px-4 py-12 md:py-16 mx-auto sm:max-w-xl md:max-w-full lg:max-w-screen-xl md:px-24 lg:px-8 lg:py-20">
+        <div className="px-4 py-6 mx-auto sm:max-w-xl md:max-w-full lg:max-w-screen-xl md:px-24 lg:px-8 lg:py-8">
             <div>
               <p className="text-4xl md:text-5xl  text-center lg:text-6xl font-bold px-3 py-10 lg:pb-10 uppercase minerva_modern">Get consultation <br /> from our experts</p>
             </div>

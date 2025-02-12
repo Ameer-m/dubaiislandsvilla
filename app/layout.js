@@ -12,8 +12,8 @@ const geistMono = Geist_Mono({
 });
 
 export const metadata = {
-  title: "Luxury 1-4 BR Apartments in Dubai Island | Completion 2026",
-  description: "Breathtaking beauty and top-tier amenities with 1-4 bedroom apartments in Dubai. Just 15 mins from the airport, 20 mins to the city center. Completion in 2026. Payment plan: 60/40",
+  title: "Luxury Villas on Dubai Islands | Nakheel Bay Villas with Stunning Views",
+  description: "Discover the unrivaled luxury of Nakheel Bay Villas on Dubai's islands. Enjoy modern designs, breathtaking water views and a flexible payment plan. Delivery Q2 2027.",
 };
 
 export default function RootLayout({ children }) {

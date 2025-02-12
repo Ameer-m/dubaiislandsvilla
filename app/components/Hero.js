@@ -44,7 +44,7 @@ const Hero = ({ title, subtitle, buttonText, buttonAction }) => {
                 <div className="w-full">
                     <span className="inline text-lg md:text-xl">Starting From </span>
                     <br className="block lg:hidden" />
-                    <p className="text-3xl lg:text-4xl font-bold"> AED 1,850,000</p>
+                    <p className="text-3xl lg:text-4xl font-bold minerva_modern"> AED 1,850,000</p>
                 </div>
                 <div className="flex justify-center items-center flex-col md:flex-row md:space-x-6 w-full">
                     <div className="w-full flex flex-col items-center justify-center">
