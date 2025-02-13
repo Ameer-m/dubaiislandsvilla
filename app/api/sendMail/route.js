@@ -87,7 +87,7 @@ export async function POST(req) {
         break;
       default:
         mediatype = 129475;
-        medianame = 70128;
+        medianame = 70134;
         break;
     }
 
