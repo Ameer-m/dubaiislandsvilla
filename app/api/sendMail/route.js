@@ -137,7 +137,7 @@ export async function POST(req) {
     const mailOptions = {
       from: "PSI Real Estate <psirealestate2@gmail.com>",
       to: "callcenter@psidubai.com",
-      cc: ["ameer.k@psidubai.com", "akshayb@psidubai.com"],
+      cc: ["amer@psidubai.com", "akshayb@psidubai.com"],
       subject: "New Inquiry - PSI Real Estate",
       html: `
       <!DOCTYPE html>
